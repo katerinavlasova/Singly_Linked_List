@@ -29,6 +29,35 @@ public:
         ++size;
         head = node;
     }
+
+    TypeValue pushBack(const TypeValue& value)
+    {
+        Node<TypeValue>* node = new Node<TypeValue>(value);
+        if (!node)
+            return NULL;
+        ++size;
+        if (head == nullptr)
+        {
+            head = node;
+            return value;
+        }
+        Node<TypeValue>* tmp = head;
+        while (tmp->nextNode != nullptr)
+            tmp = tmp->nextNode;
+        tmp->nextNode = node;
+        return value;
+    }
+
+    TypeValue pushFront(const TypeValue& value)
+    {
+        Node<TypeValue>* node = new Node<TypeValue>(value);
+        if (!node)
+            return NULL;
+        ++size;
+        node->nextNode = head;
+        head = node;
+        return value;
+    }
 };
 
 
