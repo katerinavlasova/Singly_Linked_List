@@ -58,6 +58,43 @@ public:
         head = node;
         return value;
     }
+
+    TypeValue popFront()
+    {
+        if (head == nullptr)
+            return NULL;
+        --size;
+        Node<TypeValue>* tmp = head->nextNode;
+        TypeValue value = head->value;
+        delete head;
+        head = tmp;
+        return value;
+    }
+
+    TypeValue popBack()
+    {
+        if (head == nullptr)
+            return NULL;
+        --size;
+        Node<TypeValue>* tmp, * last;
+        tmp = head;
+        last = head;
+        while (tmp->nextNode != nullptr)
+        {
+            last = tmp;
+            tmp = tmp->nextNode;
+        }
+        TypeValue value = tmp->value;
+        if (last == tmp)
+        {
+            delete head;
+            head = nullptr;
+            return value;
+        }
+        delete last->nextNode;
+        last->nextNode = nullptr;
+        return value;
+    }
 };
 
 
