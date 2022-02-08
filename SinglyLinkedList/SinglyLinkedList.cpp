@@ -4,19 +4,19 @@ using namespace std;
 #include <iterator>
 #include <cstddef>
 
-template <typename TypeValue>
-struct Node {
-    TypeValue value = NULL;
-    Node* nextNode = nullptr;
-    Node<TypeValue>(TypeValue val = TypeValue(), Node* node = nullptr) : value(val), nextNode(node)
-    {
-    };
-};
 
 template <typename TypeValue>
 class LinkedList {
 
 private:
+    template <typename TypeValue>
+    struct Node {
+        TypeValue value = NULL;
+        Node* nextNode = nullptr;
+        Node<TypeValue>(TypeValue val = TypeValue(), Node* node = nullptr) : value(val), nextNode(node)
+        {
+        };
+    };
     Node<TypeValue>* head = nullptr;
     unsigned int size = 0;
 
