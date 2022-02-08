@@ -148,6 +148,41 @@ public:
 
         return NULL;
     }
+
+    void printList()
+    {
+        if (head == nullptr)
+        {
+            cout << "No elements!" << endl;
+            return;
+        }
+        Node<TypeValue>* tmp = head;
+        while (tmp != nullptr)
+        {
+            cout << tmp->value << " ";
+            tmp = tmp->nextNode;
+        }
+        cout << endl;
+    }
+
+    TypeValue front()
+    {
+        if (head == nullptr)
+            return NULL;
+        return head->value;
+    }
+
+    bool isEmpty()
+    {
+        if (head == nullptr)
+            return true;
+        return false;
+    }
+
+    unsigned int getSize()
+    {
+        return size;
+    }
 };
 
 
