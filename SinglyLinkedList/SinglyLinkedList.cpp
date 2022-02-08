@@ -1,6 +1,8 @@
 #include <iostream>
 
 using namespace std;
+#include <iterator>
+#include <cstddef>
 
 template <typename TypeValue>
 struct Node {
@@ -94,6 +96,57 @@ public:
         delete last->nextNode;
         last->nextNode = nullptr;
         return value;
+    }
+
+    TypeValue insertAfter(TypeValue value, int index)
+    {
+        int count = 0;
+        ++size;
+        Node<TypeValue> *element = new Node<TypeValue>(value);
+        if (!element)
+            return NULL;
+        if (head == nullptr)
+        {
+            head = element;
+            return value;
+        }
+        Node<TypeValue> *tmp = head;
+        Node<TypeValue> *last = tmp;
+        while (count <= index && tmp != nullptr)
+        {
+            ++count;
+            last = tmp;
+            tmp = tmp->nextNode;
+        }
+        if (tmp != head)
+            element->nextNode = tmp;
+        last->nextNode = element;
+    }
+
+    TypeValue eraseAfter(int index)
+    {
+        int count = 0;
+        TypeValue value;
+        if (head == nullptr)
+            return NULL;
+        Node<TypeValue> *tmp = head;
+        Node<TypeValue> *previous = tmp;
+        while (count <= index && tmp != nullptr)
+        {
+            ++count;
+            previous = tmp;
+            tmp = tmp->nextNode;
+        }
+        
+        if (tmp)
+        {
+            value = tmp->value;
+            previous->nextNode = tmp->nextNode;
+            delete tmp;
+            return value;
+        }
+
+        return NULL;
     }
 };
 
