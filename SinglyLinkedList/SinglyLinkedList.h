@@ -19,6 +19,7 @@ namespace List
 
     public:
         LinkedList(const TypeValue& value);
+        ~LinkedList();
 
         TypeValue pushBack(const TypeValue& value);
         TypeValue pushFront(const TypeValue& value);

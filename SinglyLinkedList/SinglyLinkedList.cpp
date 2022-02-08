@@ -16,6 +16,21 @@ LinkedList<TypeValue>::LinkedList(const TypeValue& value)
 }
 
 template <typename TypeValue>
+LinkedList<TypeValue>::~LinkedList()
+{
+    if (head == nullptr)
+        return;
+    Node<TypeValue>* tmp = head;
+    Node<TypeValue>* previous = head;
+    while (tmp != nullptr)
+    {
+        previous = tmp;
+        tmp = tmp->nextNode;
+        delete previous;
+    }
+}
+
+template <typename TypeValue>
 TypeValue LinkedList<TypeValue>::pushBack(const TypeValue& value)
 {
     Node<TypeValue>* node = new Node<TypeValue>(value);
