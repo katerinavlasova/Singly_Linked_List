@@ -149,6 +149,24 @@ public:
         return NULL;
     }
 
+    void clear()
+    {
+        if (head == nullptr)
+            return;
+        Node<TypeValue>* tmp = head;
+        Node<TypeValue>* last = head;
+        while (tmp->nextNode != nullptr)
+        {
+            last = tmp;
+            tmp = tmp->nextNode;
+            delete last;
+        }
+        delete tmp;
+        head = nullptr;
+        size = 0;
+        cout << head << endl;
+    }
+
     void printList()
     {
         if (head == nullptr)
